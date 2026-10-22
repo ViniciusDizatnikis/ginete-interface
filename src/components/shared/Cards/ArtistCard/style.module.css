@@ -1,0 +1,250 @@
+.card {
+  --card-width: 140px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: var(--card-width);
+  height: max-content;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+/* Tamanhos */
+.small {
+  --card-width: 140px;
+}
+
+.medium {
+  --card-width: 180px;
+}
+
+/* Interação do card */
+.card:hover,
+.card:focus-within {
+  background: var(--color-surface-hover);
+}
+
+.card:has(.link:focus-visible) {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Imagem do artista */
+.frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--color-surface-hover);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover .frame {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.28);
+}
+
+.artistImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.frame[data-status="loaded"] .artistImg {
+  opacity: 1;
+}
+
+.imageError {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+.initials {
+  font-size: calc(var(--card-width) * 0.28);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-on-primary);
+  user-select: none;
+}
+
+/* Estado de carregamento e skeleton */
+.frame[data-status="loading"] {
+  background: linear-gradient(
+    100deg,
+    var(--color-surface-hover) 30%,
+    var(--color-border) 50%,
+    var(--color-surface-hover) 70%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonTitle,
+.skeletonSubtitle {
+  display: block;
+  height: 1em;
+  border-radius: 4px;
+  background: linear-gradient(
+    100deg,
+    var(--color-surface-hover) 30%,
+    var(--color-border) 50%,
+    var(--color-surface-hover) 70%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonTitle {
+  width: 75%;
+}
+
+.skeletonSubtitle {
+  width: 50%;
+}
+
+.frame[data-status="error"] {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    color-mix(in srgb, var(--color-primary) 40%, var(--color-bg))
+  );
+}
+
+/* Informações do artista */
+.artistDescr {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card:hover .title {
+  text-decoration: underline;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Área clicável do card */
+.link {
+  all: unset;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.link::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  content: "";
+}
+
+/* Botão de reprodução */
+.play {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--play-size);
+  height: var(--play-size);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.2s ease;
+}
+
+.play svg {
+  width: 45%;
+  height: 45%;
+  margin-left: 6%;
+}
+
+.card:hover .play,
+.card:focus-within .play {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card .play:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(0) scale(1.06);
+}
+
+.card .play:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.play:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Animações */
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Dispositivos sem hover */
+@media (hover: none) {
+  .play {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Acessibilidade: reduzir movimento */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .frame,
+  .artistImg,
+  .play {
+    transition: none;
+  }
+
+  .frame[data-status="loading"],
+  .skeletonTitle,
+  .skeletonSubtitle {
+    animation: none;
+  }
+}
