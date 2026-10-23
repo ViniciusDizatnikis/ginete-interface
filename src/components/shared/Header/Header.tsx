@@ -1,10 +1,10 @@
 import Logo from '@/assets/images/Logo.png'
-import style from './styles.module.css'
+import styles from './styles.module.css'
 
 const Header = () => {
   return (
-    <div className={style.header}>
-      <img src={Logo} alt="Logo" className={style.logo} />
+    <div className={styles.header}>
+      <img src={Logo} alt="Logo" className={styles.logo} />
     </div>
   )
 }

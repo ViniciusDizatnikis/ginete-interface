@@ -3,4 +3,5 @@
     display: flex;
     padding: 10px;
     overflow: hidden;
+    flex-direction: column;
 }

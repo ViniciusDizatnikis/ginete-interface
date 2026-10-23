@@ -1,0 +1,121 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: max-content;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease,
+    scale 0.2s ease;
+}
+
+/* Fundo Animado */
+.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 95%;
+  height: 95%;
+  border-radius: 8px;
+  background-color: var(--color-surface-hover);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease;
+}
+
+.card:hover .background,
+.card:focus-within .background {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Imagem do artista */
+.frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+  transition: box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+.frame[data-status="error"] {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    color-mix(in srgb, var(--color-primary) 40%, var(--color-bg))
+  );
+}
+
+.frame[data-status="loaded"] .artistImg {
+  opacity: 1;
+}
+
+.card:hover .frame {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.28);
+}
+
+.artistImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.imageError {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Informações do artista */
+.artistDescr {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  z-index: 1;
+}
+
+.title {
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Ajuste para o Skeleton */
+.skeletonOverlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}

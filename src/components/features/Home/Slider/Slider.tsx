@@ -3,6 +3,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type CSSProperties,
   type PropsWithChildren,
 } from "react";
 import style from "./styles.module.css";
@@ -13,6 +14,7 @@ interface SliderProps {
   title?: string;
   onSeeMore?: () => void;
   onSeeMoreLabel?: string;
+  style?: CSSProperties;
 }
 
 const Slider = ({
@@ -20,6 +22,7 @@ const Slider = ({
   title,
   onSeeMore,
   onSeeMoreLabel,
+  style : styleParam
 }: PropsWithChildren<SliderProps>) => {
   const rootRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -72,7 +75,7 @@ const Slider = ({
   }, [update]);
 
   return (
-    <section ref={rootRef} className={style.slider}>
+    <section ref={rootRef} className={style.slider} style={styleParam}>
       {title && (
         <header className={style.header}>
           {title && <h2 className={style.title}>{title}</h2>}
