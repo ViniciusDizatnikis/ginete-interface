@@ -39,6 +39,8 @@
   color: var(--color-text-muted);
   padding: 0 5px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .seeMore:hover {

@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface SliderProps {
   title?: string;
+  size?: number;
   onSeeMore?: () => void;
   onSeeMoreLabel?: string;
   style?: CSSProperties;
@@ -20,9 +21,10 @@ interface SliderProps {
 const Slider = ({
   children,
   title,
+  size,
   onSeeMore,
   onSeeMoreLabel,
-  style : styleParam
+  style: styleParam,
 }: PropsWithChildren<SliderProps>) => {
   const rootRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -75,15 +77,15 @@ const Slider = ({
   }, [update]);
 
   return (
-    <section ref={rootRef} className={style.slider} style={styleParam}>
+    <section ref={rootRef} className={style.slider} style={{ maxWidth: size }}>
       {title && (
         <header className={style.header}>
           {title && <h2 className={style.title}>{title}</h2>}
 
           {onSeeMore && (
-            <h3 className={style.seeMore} onClick={onSeeMore}>
+            <button className={style.seeMore} onClick={onSeeMore}>
               {onSeeMoreLabel ?? "Ver mais"}
-            </h3>
+            </button>
           )}
         </header>
       )}

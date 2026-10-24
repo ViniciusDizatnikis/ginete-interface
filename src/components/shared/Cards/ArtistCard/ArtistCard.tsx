@@ -7,7 +7,8 @@ import SkeletonLoader from "../../SkeletonLoader";
 interface ArtistCardProps {
   imgURL: string;
   name: string;
-  size?: number;
+  size?: number | string;
+  adaptative?: boolean;
   subtitle?: string;
   onClick?: () => void;
 }
@@ -19,6 +20,7 @@ const ArtistCard = ({
   imgURL,
   size = 120,
   subtitle = "Artista",
+  adaptative,
   onClick,
 }: ArtistCardProps) => {
   const [status, setStatus] = useState<ImageStatus>("loading");
@@ -30,7 +32,11 @@ const ArtistCard = ({
   }, [imgURL]);
 
   return (
-    <article className={styles.card} style={{ width: size }} onClick={onClick}>
+    <article
+      className={styles.card}
+      style={{ maxWidth: size, minWidth: adaptative ? "auto" : size }}
+      onClick={onClick}
+    >
       <div className={styles.background}></div>
       <div className={styles.frame} data-status={status}>
         {status !== "error" ? (

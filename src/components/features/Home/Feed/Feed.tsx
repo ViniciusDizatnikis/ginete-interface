@@ -1,14 +1,18 @@
 import SongCard from "@/components/shared/Cards/SongCard/SongCard";
 import ArtistCard from "../../../shared/Cards/ArtistCard/ArtistCard";
-import Slider from "../Slider/Slider";
+import Slider from "../../../shared/Slider/Slider";
 import Style from "./styles.module.css";
 import artists from "@/components/data/artists";
 import { songs } from "@/components/data/songs";
+import { useNavigate } from "react-router-dom";
+import Presentation from "@/components/shared/Presetation/Presetation";
 
 const Feed = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={Style.container}>
-      <Slider title="Artistas">
+      <Slider title="Artistas" onSeeMore={() => alert("ola")}>
         {artists.map((artist) => (
           <ArtistCard
             key={artist.id}
@@ -16,11 +20,38 @@ const Feed = () => {
             name={artist.name}
             size={140}
             onClick={() => {
-              alert(artist.name);
+              navigate(`/artist/${artist.id}`);
             }}
           />
         ))}
       </Slider>
+
+      <Presentation title="Artistas" onSeeMore={() => navigate("/artistas")} minColumnWidth={180}>
+        {/* {artists.slice(0, 5).map((artist) => (
+          <ArtistCard
+            key={artist.id}
+            imgURL={artist.image}
+            name={artist.name}
+            size={140}
+            onClick={() => {
+              navigate(`/artist/${artist.id}`);
+            }}
+          />
+        ))} */}
+        {songs.map((song) => (
+          <SongCard
+            key={song.id}
+            imgURL={song.image}
+            name={song.name}
+            onClick={() => {
+              navigate(`/song/${song.id}`);
+            }}
+            onPlay={() => {
+              navigate(`/song/${song.id}/play`);
+            }}
+          />
+        ))}
+      </Presentation>
 
       <Slider title="Musicas">
         {songs.map((song) => (
@@ -29,8 +60,12 @@ const Feed = () => {
             imgURL={song.image}
             name={song.name}
             size={180}
+            adaptative={false}
             onClick={() => {
-              alert(song.name);
+              navigate(`/song/${song.id}`);
+            }}
+            onPlay={() => {
+              navigate(`/song/${song.id}/play`);
             }}
           />
         ))}

@@ -8,6 +8,7 @@ interface SongcardProps {
   imgURL: string;
   name: string;
   size?: number;
+  adaptative?: boolean;
   subtitle?: string;
   onClick?: () => void;
   onPlay?: () => void;
@@ -20,6 +21,7 @@ const SongCard = ({
   name,
   size,
   subtitle,
+  adaptative,
   onClick,
   onPlay,
 }: SongcardProps) => {
@@ -32,7 +34,11 @@ const SongCard = ({
   }, [imgURL]);
 
   return (
-    <article className={styles.card} style={{ width: size }} onClick={onClick}>
+    <article
+      className={styles.card}
+      style={{ maxWidth: size, minWidth: adaptative? "auto" : size }}
+      onClick={onClick}
+    >
       <div className={styles.background}></div>
       <div className={styles.frame} data-status={status}>
         {status !== "error" ? (
@@ -70,13 +76,14 @@ const SongCard = ({
         )}
 
         <button
+          aria-label={`Tocar ${songName}`}
           className={styles.playButton}
           onClick={(e) => {
             e.stopPropagation();
             onPlay?.();
           }}
         >
-          <Play fill="currentColor" />
+          <Play fill="currentColor" aria-hidden="true" />
         </button>
       </div>
 
