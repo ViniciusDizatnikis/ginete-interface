@@ -26,18 +26,30 @@ const Feed = () => {
         ))}
       </Slider>
 
-      <Presentation title="Artistas" onSeeMore={() => navigate("/artistas")} minColumnWidth={180}>
-        {/* {artists.slice(0, 5).map((artist) => (
+      <Presentation
+        title="Artistas"
+        onSeeMore={() => navigate("/artistas")}
+        minColumnWidth={180}
+      >
+        {artists.map((artist) => (
           <ArtistCard
             key={artist.id}
             imgURL={artist.image}
             name={artist.name}
-            size={140}
+            size={180}
+            adaptative={true}
             onClick={() => {
               navigate(`/artist/${artist.id}`);
             }}
           />
-        ))} */}
+        ))}
+      </Presentation>
+
+      <Presentation
+        title="Artistas"
+        onSeeMore={() => navigate("/artistas")}
+        minColumnWidth={180}
+      >
         {songs.map((song) => (
           <SongCard
             key={song.id}

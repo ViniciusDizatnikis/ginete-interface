@@ -27,6 +27,8 @@ const ArtistCard = ({
 
   const artistName = name.trim();
 
+  console.log(adaptative);
+
   useEffect(() => {
     setStatus("loading");
   }, [imgURL]);
@@ -34,7 +36,11 @@ const ArtistCard = ({
   return (
     <article
       className={styles.card}
-      style={{ maxWidth: size, minWidth: adaptative ? "auto" : size }}
+      style={{
+        maxWidth:
+          adaptative === undefined || adaptative === false ? size : "none",
+        minWidth: size,
+      }}
       onClick={onClick}
     >
       <div className={styles.background}></div>
