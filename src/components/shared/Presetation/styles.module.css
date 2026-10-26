@@ -1,6 +1,6 @@
 .presentation {
-  --min-column-width: 180px;
-  --row-count: 1;
+  --min-column-width: 0px;
+  --row-count: 0;
 
   width: 100%;
   height: max-content;
@@ -40,14 +40,18 @@
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(min(100%, var(--min-column-width)), 1fr)
+    minmax(var(--min-column-width), 1fr)
   );
-  grid-template-rows: repeat(var(--row-count), minmax(0, 1fr));
-  justify-content: center;
+  grid-template-rows: repeat(var(--row-count), auto);
+  grid-auto-rows: 0;
+  column-gap: 16px;
+  row-gap: 0;
+  overflow: hidden;
   width: 100%;
   min-width: 0;
 }
 
-.items > [hidden] {
-  display: none !important;
+.items > * {
+  min-height: 0;
+  overflow: hidden;
 }

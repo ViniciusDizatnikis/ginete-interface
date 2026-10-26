@@ -37,7 +37,7 @@ const Feed = () => {
             imgURL={artist.image}
             name={artist.name}
             size={180}
-            adaptative={true}
+            adaptative
             onClick={() => {
               navigate(`/artist/${artist.id}`);
             }}
@@ -72,7 +72,6 @@ const Feed = () => {
             imgURL={song.image}
             name={song.name}
             size={180}
-            adaptative={false}
             onClick={() => {
               navigate(`/song/${song.id}`);
             }}

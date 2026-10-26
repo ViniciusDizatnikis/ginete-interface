@@ -26,9 +26,7 @@ const ArtistCard = ({
   const [status, setStatus] = useState<ImageStatus>("loading");
 
   const artistName = name.trim();
-
-  console.log(adaptative);
-
+  
   useEffect(() => {
     setStatus("loading");
   }, [imgURL]);

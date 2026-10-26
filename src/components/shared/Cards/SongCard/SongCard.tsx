@@ -36,7 +36,10 @@ const SongCard = ({
   return (
     <article
       className={styles.card}
-      style={{ maxWidth: size, minWidth: adaptative? "auto" : size }}
+      style={{
+        maxWidth: adaptative ? "none" : size,
+        minWidth: size,
+      }}
       onClick={onClick}
     >
       <div className={styles.background}></div>
