@@ -1,0 +1,52 @@
+.presentation {
+  --min-column-width: 0px;
+  --row-count: 0;
+
+  width: 100%;
+  height: max-content;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+}
+
+.seeMore {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 0 5px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.seeMore:hover {
+  color: var(--color-text);
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--min-column-width), 1fr)
+  );
+  grid-template-rows: repeat(var(--row-count), auto);
+  grid-auto-rows: 0;
+  column-gap: 16px;
+  row-gap: 0;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+}

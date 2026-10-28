@@ -3,6 +3,7 @@
     --color-bg: #f6f7f9;
     --color-surface: #ffffff;
     --color-surface-hover: #f0f2f5;
+    --color-surface-selected: #f9f9fa;
     --color-border: #dfe3e8;
     --color-text: #1d2330;
     --color-text-muted: #6b7380;
@@ -22,6 +23,7 @@
     --color-bg: #14171c;
     --color-surface: #1c2027;
     --color-surface-hover: #252a33;
+    --color-surface-selected: #20242b;
     --color-border: #2c323c;
     --color-text: #e3e6eb;
     --color-text-muted: #8a93a1;

@@ -6,6 +6,8 @@ import artists from "@/components/data/artists";
 import { songs } from "@/components/data/songs";
 import { useNavigate } from "react-router-dom";
 import Presentation from "@/components/shared/Presetation/Presetation";
+import List from "@/components/shared/List/List";
+import ListItem from "@/components/shared/List/ListItem/ListItem";
 
 const Feed = () => {
   const navigate = useNavigate();
@@ -81,6 +83,25 @@ const Feed = () => {
           />
         ))}
       </Slider>
+
+      <List>
+        {songs.map((song, index) => (
+          <ListItem
+            key={song.id}
+            index={index}
+            imgURL={song.image}
+            name={song.name}
+            duration={song.duration}
+            artistName="teste"
+            onClick={() => {
+              navigate(`/song/${song.id}`);
+            }}
+            onPlay={() => {
+              navigate(`/song/${song.id}/play`);
+            }}
+          />
+        ))}
+      </List>
     </div>
   );
 };

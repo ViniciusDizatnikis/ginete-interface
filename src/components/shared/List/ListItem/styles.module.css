@@ -1,0 +1,102 @@
+.card {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.divIndex {
+  width: 40px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divIndex span {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.divIndex .playButton {
+  color: var(--color-text);
+  width: 1.1rem;
+  display: none;
+}
+
+.card:hover .divIndex span {
+  display: none;
+}
+
+.card:hover .playButton {
+  display: block;
+}
+
+.img {
+  display: block;
+  width: 55px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.containerInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title span:hover {
+  text-decoration: underline;
+}
+
+.artistName {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden
+}
+
+.artistName span:hover {
+  text-decoration: underline;
+}
+
+.card:hover .artistName {
+  color: var(--color-text);
+}
+
+.divDuration {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 60px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  padding: 5px;
+}
