@@ -3,25 +3,45 @@ import styles from "./styles.module.css";
 
 interface ListItemProps {
   index?: number;
+
+  id: string;
   imgURL: string;
   name: string;
   artistName?: string;
   duration?: string;
-  onClick?: () => void;
+
+  selected?: boolean;
+  hasSelectedAbove?: boolean;
+  hasSelectedBelow?: boolean;
+
+  onCardClick?: (event: React.MouseEvent) => void;
   onPlay?: () => void;
 }
 
 const ListItem = ({
   index,
+
+  id,
   imgURL,
   name,
   artistName,
   duration,
-  onClick,
+
+  selected,
+  hasSelectedAbove,
+  hasSelectedBelow,
+  
+  onCardClick,
   onPlay,
 }: ListItemProps) => {
   return (
-    <article className={styles.card}>
+    <article
+      className={styles.card}
+      data-selected={selected}
+      data-selected-above={hasSelectedAbove}
+      data-selected-below={hasSelectedBelow}
+      onClick={onCardClick}
+    >
       {index !== undefined && (
         <div className={styles.divIndex}>
           <span>{index}</span>

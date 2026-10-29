@@ -6,12 +6,28 @@
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  user-select: none;
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-.card:hover {
+.card[data-selected="true"] {
+  background-color: var(--color-surface-selected);
+  border-radius: 5px;
+}
+
+.card[data-selected="true"][data-selected-above="true"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.card[data-selected="true"][data-selected-below="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card:hover:not([data-selected="true"]) {
   background-color: var(--color-surface-hover);
 }
 
@@ -28,10 +44,15 @@
   color: var(--color-text-muted);
 }
 
-.divIndex .playButton {
+.playButton {
   color: var(--color-text);
   width: 1.1rem;
   display: none;
+  transition: transform 200ms ease;
+}
+
+.playButton:hover {
+  transform: scale(1.2);
 }
 
 .card:hover .divIndex span {
@@ -80,7 +101,7 @@
   margin: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .artistName span:hover {

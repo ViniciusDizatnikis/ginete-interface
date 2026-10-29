@@ -1,3 +1,4 @@
+
 /* Tema claro (padrão) */
 :root {
     --color-bg: #f6f7f9;
@@ -18,12 +19,12 @@
     color-scheme: light;
 }
 
-/* Tema escuro: escolhido manualmente com <html data-theme="dark"> */
+/* Tema escuro: escolhido manualmente */
 [data-theme="dark"] {
     --color-bg: #14171c;
     --color-surface: #1c2027;
     --color-surface-hover: #252a33;
-    --color-surface-selected: #20242b;
+    --color-surface-selected: #373c46;
     --color-border: #2c323c;
     --color-text: #e3e6eb;
     --color-text-muted: #8a93a1;
@@ -38,12 +39,13 @@
     color-scheme: dark;
 }
 
-/* Sem tema escolhido, segue o sistema operacional */
+/* Tema escuro automático: segue o sistema operacional */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         --color-bg: #14171c;
         --color-surface: #1c2027;
         --color-surface-hover: #252a33;
+        --color-surface-selected: #373c46;
         --color-border: #2c323c;
         --color-text: #e3e6eb;
         --color-text-muted: #8a93a1;

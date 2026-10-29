@@ -88,12 +88,13 @@ const Feed = () => {
         {songs.map((song, index) => (
           <ListItem
             key={song.id}
+            id={song.id}
             index={index}
             imgURL={song.image}
             name={song.name}
             duration={song.duration}
             artistName="teste"
-            onClick={() => {
+            onCardClick={() => {
               navigate(`/song/${song.id}`);
             }}
             onPlay={() => {
